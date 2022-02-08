@@ -1,0 +1,3 @@
+---
+profile_session_log::install::required_pkgs:
+  - "tlog"

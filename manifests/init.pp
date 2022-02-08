@@ -5,4 +5,5 @@
 # @example
 #   include profile_session_log
 class profile_session_log {
+  include ::profile_session_log::install
 }
