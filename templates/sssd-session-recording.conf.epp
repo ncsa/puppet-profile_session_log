@@ -2,8 +2,6 @@
       $groups,
 | -%>
 # This file is managed by Puppet. Manual changes will be lost
-
-#TODO make this depend on variables
 [session_recording]
 <% if ($users.empty) and ($groups.empty) { -%>
 scope=all

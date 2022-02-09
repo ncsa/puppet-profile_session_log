@@ -10,7 +10,7 @@
 #   include profile_session_log::sssd
 class profile_session_log::sssd (
   Array $users,
-  Array $groups
+  Array $groups,
 ) {
 
   $enabled = lookup('profile_session_log::enable_session_log', Boolean)
@@ -21,16 +21,13 @@ class profile_session_log::sssd (
     $ensure_parm = 'absent'
   }
 
-  #TODO harcoding this for now, set this to actual values 
   $sssd_config_hash = {
-    #'users'  => 'ben, noone',
-    'users'  => join($users, ', '),
-    'groups' => '',
+    'users'   => join($users, ', '),
+    'groups'  => join($groups, ', '),
   }
 
   file { '/etc/sssd/conf.d/sssd-session-recording.conf':
     ensure  => $ensure_parm,
-    #content => epp( 'profile_session_log/sssd-session-recording.conf.epp' ), #TODO rem this
     content => epp( 'profile_session_log/sssd-session-recording.conf.epp', $sssd_config_hash ),
     owner   => 'root',
     group   => 'root',
