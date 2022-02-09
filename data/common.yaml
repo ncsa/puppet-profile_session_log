@@ -5,3 +5,4 @@ profile_session_log::sssd::users:
   - "ben"
   - "stevie"
   - "zach"
+profile_session_log::sssd::groups: []
