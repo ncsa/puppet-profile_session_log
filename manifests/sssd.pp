@@ -24,7 +24,7 @@ class profile_session_log::sssd (
   #TODO harcoding this for now, set this to actual values 
   $sssd_config_hash = {
     #'users'  => 'ben, noone',
-    'users'  => join($users, ','),
+    'users'  => join($users, ', '),
     'groups' => '',
   }
 
