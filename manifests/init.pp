@@ -10,4 +10,5 @@ class profile_session_log (
 ) {
   include ::profile_session_log::install
   include ::profile_session_log::sssd
+  include ::profile_session_log::tlog
 }
