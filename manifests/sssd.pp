@@ -15,7 +15,8 @@ class profile_session_log::sssd {
 
   file { '/etc/sssd/conf.d/sssd-session-recording.conf':
     ensure  => $ensure_parm,
-    content => epp( 'profile_session_log/sssd-session-recording.conf.epp' ),
+    #content => epp( 'profile_session_log/sssd-session-recording.conf.epp' ),
+    content => epp( "puppet:///modules/${module_name}/sssd-session-recording.conf.epp" ),
     owner   => 'root',
     group   => 'root',
     mode    => '0600',
