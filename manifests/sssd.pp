@@ -9,11 +9,12 @@
 # @example
 #   include profile_session_log::sssd
 class profile_session_log::sssd (
-  Array $users,
   Array $groups,
+  Array $users,
 ) {
 
-  $enabled = lookup('profile_session_log::enable_session_log', Boolean)
+  #$enabled = lookup('profile_session_log::enable_session_log', Boolean)
+  $enabled = lookup("${module_name}::enable_session_log", Boolean)
 
   if ($enabled) {
     $ensure_parm = 'present'
@@ -28,7 +29,8 @@ class profile_session_log::sssd (
 
   file { '/etc/sssd/conf.d/sssd-session-recording.conf':
     ensure  => $ensure_parm,
-    content => epp( 'profile_session_log/sssd-session-recording.conf.epp', $sssd_config_hash ),
+    #content => epp( 'profile_session_log/sssd-session-recording.conf.epp', $sssd_config_hash ),
+    content => epp( "${module_name}/sssd-session-recording.conf.epp", $sssd_config_hash ),
     owner   => 'root',
     group   => 'root',
     mode    => '0600',
