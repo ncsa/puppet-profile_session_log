@@ -9,8 +9,8 @@
 # @example
 #   include profile_session_log::sssd
 class profile_session_log::sssd (
-  Array $groups,
-  Array $users,
+  Array[String] $groups,
+  Array[String] $users,
 ) {
 
   $enabled = lookup("${module_name}::enable_session_log", Boolean)

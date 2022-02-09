@@ -1,0 +1,15 @@
+module(load="omrelp" tls.tlslib="openssl")
+ 
+# Forward local3 tlog to remote collector
+if $syslogfacility-text == 'local3' then {
+  action(type="omrelp"
+    #target="tlog.security.ncsa.illinois.edu" port="6514" tls="on"
+    target="<%= $profile_session_log::remote_syslog_server %>" port="<%= $profile_session_log::remote_syslog_server_port %>" tls="on"
+    tls.cacert="/etc/ssl/certs/ca-bundle.crt"
+    tls.authmode="name"
+    #tls.permittedpeer="tlog.security.ncsa.illinois.edu"
+    tls.permittedpeer="<%= $profile_session_log::remote_syslog_server %>"
+    tls.tlscfgcmd="MinProtocol=TLSv1.2"
+  )
+  stop
+}

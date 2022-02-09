@@ -13,12 +13,12 @@ class profile_session_log::tlog {
   }
 
   file { '/etc/tlog/tlog-rec-session.conf':
-    ensure  => $ensure_parm,
-    source  => "puppet:///modules/${module_name}/tlog-rec-session.conf",
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0600',
+    ensure => $ensure_parm,
+    source => "puppet:///modules/${module_name}/tlog-rec-session.conf",
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0600',
     #require => Package['unbound'], #TODO make this require, can it take an array of packages?
   }
- 
+
 }
