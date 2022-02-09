@@ -1,1 +1,2 @@
---- {}
+---
+profile_session_log::enable_session_log: true
