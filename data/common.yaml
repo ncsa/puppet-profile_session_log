@@ -1,8 +1,11 @@
 ---
 profile_session_log::enable_session_log: true
 
+#profile_session_log::sssd::users: []
 profile_session_log::sssd::users:
   - "ben"
   - "stevie"
   - "zach"
-profile_session_log::sssd::groups: []
+profile_session_log::sssd::groups:
+  - "cool"
+  - "people"
