@@ -3,4 +3,4 @@ profile_session_log::install::required_pkgs:
   - "tlog"
 profile_session_log::rsyslog::required_pkgs:
   - "rsyslog-openssl"
-  - "rsyslog-relp"
+#  - "rsyslog-relp" #TODO put this back in somehow?
