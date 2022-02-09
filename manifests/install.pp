@@ -9,8 +9,12 @@ class profile_session_log::install (
   Array[ String ] $required_pkgs,
 ) {
 
-  $packages_defaults = {
+  $enabled = lookup("${module_name}::enable_session_log", Boolean)
+
+  if ($enabled) {
+    $packages_defaults = {
+    }
+    ensure_packages( $required_pkgs, $packages_defaults )
   }
-  ensure_packages( $required_pkgs, $packages_defaults )
 
 }

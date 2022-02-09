@@ -6,17 +6,26 @@
 # @param remote_syslog_server_port
 #   Port number of the remote syslog server to forward to
 #
+# @parm required_pkgs
+#   List of packages required to forward tlog data over rsyslog
+#
 # @example
 #   include profile_session_log::rsyslog
 class profile_session_log::rsyslog (
-  String $remote_syslog_server,
-  Integer $remote_syslog_server_port,
+  String        $remote_syslog_server,
+  Integer       $remote_syslog_server_port,
+  Array[String] $required_pkgs,
 ) {
 
   $enabled = lookup("${module_name}::enable_session_log", Boolean)
 
   if ($enabled) {
     $ensure_parm = 'present'
+
+    $packages_defaults = {
+    }
+    ensure_packages( $required_pkgs, $packages_defaults )
+
   } else {
     $ensure_parm = 'absent'
   }
