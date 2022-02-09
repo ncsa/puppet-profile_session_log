@@ -1,3 +1,5 @@
+# This file is managed by Puppet. Manual changes will be lost
+
 module(load="omrelp" tls.tlslib="openssl")
  
 # Forward local3 tlog to remote collector
