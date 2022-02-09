@@ -1,2 +1,7 @@
 ---
 profile_session_log::enable_session_log: true
+
+profile_session_log::sssd::users:
+  - "ben"
+  - "stevie"
+  - "zach"

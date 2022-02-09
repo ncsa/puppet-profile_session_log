@@ -1,8 +1,17 @@
 # @summary Configure sssd component of tlog
 #
+# @parm users
+#   Array of users who will be session logged
+#
+# @parm groups
+#   Array of groups who will be session logged
+#
 # @example
 #   include profile_session_log::sssd
-class profile_session_log::sssd {
+class profile_session_log::sssd (
+  Array $users,
+  Array $groups
+) {
 
   $enabled = lookup('profile_session_log::enable_session_log', Boolean)
 
@@ -14,10 +23,10 @@ class profile_session_log::sssd {
 
   #TODO harcoding this for now, set this to actual values 
   $sssd_config_hash = {
-    'users'  => 'ben, noone',
+    #'users'  => 'ben, noone',
+    'users'  => join($users, ','),
     'groups' => '',
   }
-
 
   file { '/etc/sssd/conf.d/sssd-session-recording.conf':
     ensure  => $ensure_parm,
