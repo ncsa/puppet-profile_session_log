@@ -12,6 +12,7 @@ class profile_session_log::sssd {
     $ensure_parm = 'absent'
   }
 
+  #TODO harcoding this for now, set this to actual values 
   $sssd_config_hash = {
     'users'  => 'ben, noone',
     'groups' => '',

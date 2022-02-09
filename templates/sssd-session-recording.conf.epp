@@ -5,6 +5,10 @@
 
 #TODO make this depend on variables
 [session_recording]
+<% if ($users.empty) and ($groups.empty) { -%>
 scope=all
+<% } else { -%>
+scope=some
+<% } -%>
 users= <%= $users %>
 groups= <%= $groups %>
