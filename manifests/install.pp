@@ -1,8 +1,7 @@
-# @summary A short summary of the purpose of this class
+# @summary Install the base packages needed for tlog to function
 #
-# A description of what this class does
-#
-# #TODO add param for $required_pkgs
+# @parm required_pkgs
+#   Base packages required for tlog to work
 #
 # @example
 #   include profile_session_log::install
