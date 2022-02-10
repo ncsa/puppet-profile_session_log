@@ -37,7 +37,6 @@ class profile_session_log::rsyslog (
     group   => 'root',
     mode    => '0644',
     notify  => Service['rsyslog'],
-    #require => Package['unbound'], #TODO make this require, can it take an array of packages?
   }
 
 }
