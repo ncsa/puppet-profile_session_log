@@ -2,5 +2,8 @@
 profile_session_log::install::required_pkgs:
   - "tlog"
 profile_session_log::rsyslog::required_pkgs: []
-#  - "rsyslog-openssl"
-#  - "rsyslog-relp" #TODO put this back in somehow?
+# rsyslog-relp is required, but run into duplicate declaration
+# issues from the puppet/rsyslog module, but leaving this
+# here in case there are any future packages that are needed
+#  - "rsyslog-relp"
+#  - "rsyslog-openssl" #This package not availiable in EUS

@@ -5,8 +5,6 @@
 class profile_session_log::tlog {
 
   $enabled = lookup("${module_name}::enable_session_log", Boolean)
-
-  #TODO test
   $required_pkgs = lookup("${module_name}::install::required_pkgs", Array)
 
   if ($enabled) {
@@ -21,7 +19,6 @@ class profile_session_log::tlog {
     owner   => 'root',
     group   => 'root',
     mode    => '0600',
-    #require => Package['tlog'], 
     require => Package[$required_pkgs],
   }
 

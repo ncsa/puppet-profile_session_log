@@ -14,6 +14,7 @@ class profile_session_log::sssd (
 ) {
 
   $enabled = lookup("${module_name}::enable_session_log", Boolean)
+  $required_pkgs = lookup("${module_name}::install::required_pkgs", Array)
 
   if ($enabled) {
     $ensure_parm = 'present'
@@ -33,7 +34,7 @@ class profile_session_log::sssd (
     group   => 'root',
     mode    => '0600',
     notify  => Service['sssd'],
-    #require => Package['unbound'], #TODO make this require, can it take an array of packages?
+    require => Package[$required_pkgs],
   }
 
 }
