@@ -6,4 +6,5 @@ profile_session_log::rsyslog::required_pkgs: []
 # issues from the puppet/rsyslog module, but leaving this
 # here in case there are any future packages that are needed
 #  - "rsyslog-relp"
-#  - "rsyslog-openssl" #This package not availiable in EUS
+# This package not availiable in EUS, but probably required if not using EUS:
+#  - "rsyslog-openssl"

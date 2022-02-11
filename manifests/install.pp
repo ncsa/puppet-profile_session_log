@@ -1,6 +1,6 @@
 # @summary Install the base packages needed for tlog to function
 #
-# @parm required_pkgs
+# @param required_pkgs
 #   Base packages required for tlog to work
 #
 # @example

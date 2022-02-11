@@ -6,7 +6,7 @@
 # @param remote_syslog_server_port
 #   Port number of the remote syslog server to forward to
 #
-# @parm required_pkgs
+# @param required_pkgs
 #   List of packages required to forward tlog data over rsyslog
 #
 # @example

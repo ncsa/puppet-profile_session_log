@@ -1,9 +1,9 @@
 # @summary Configure sssd component of tlog
 #
-# @parm users
+# @param users
 #   Array of users who will be session logged
 #
-# @parm groups
+# @param groups
 #   Array of groups who will be session logged
 #
 # @example

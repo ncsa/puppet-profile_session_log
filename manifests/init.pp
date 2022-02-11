@@ -1,6 +1,6 @@
 # @summary Install and configure tlog
 #
-# @parm enable_session_log
+# @param enable_session_log
 #   Enables or disabled the logging of sessions
 #
 # @example
