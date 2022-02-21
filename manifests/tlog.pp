@@ -18,7 +18,7 @@ class profile_session_log::tlog {
     source  => "puppet:///modules/${module_name}/tlog-rec-session.conf",
     owner   => 'root',
     group   => 'root',
-    mode    => '0600',
+    mode    => '0644',
     require => Package[$required_pkgs],
   }
 
