@@ -1,0 +1,7 @@
+---
+# Redhat 8.4 requires using tcp-tls as forward protocol
+# since it doesn't have have the rsyslog-openssl package avail.
+# TODO remove required_pkgs for rsyslog
+#profile_session_log::rsyslog::required_pkgs:
+#  - "rsyslog-gnutls"
+profile_session_log::rsyslog::forward_protocol: "tcp-tls"

@@ -1,6 +1,7 @@
 ---
 profile_session_log::enable_session_log: true
 
+profile_session_log::rsyslog::forward_protocol: "relp-tls"
 profile_session_log::rsyslog::remote_syslog_server: "tlog.security.ncsa.illinois.edu"
 profile_session_log::rsyslog::remote_syslog_server_port: 6514
 
