@@ -9,17 +9,12 @@
 # @param remote_syslog_server_port
 #   Port number of the remote syslog server to forward to
 #
-# # TODO rem this
-# @param required_pkgs
-#   List of packages required to forward tlog data over rsyslog
-#
 # @example
 #   include profile_session_log::rsyslog
 class profile_session_log::rsyslog (
   String        $forward_protocol,
   String        $remote_syslog_server,
   Integer       $remote_syslog_server_port,
-  #Array[String] $required_pkgs,  #TODO remove this
 ) {
 
   $enabled = lookup("${module_name}::enable_session_log", Boolean)
@@ -44,26 +39,13 @@ class profile_session_log::rsyslog (
     $ensure_parm = 'absent'
   }
 
-  # TODO this is the preferred method, but only for hosts that are not on EUS
-  # either have it branch here and use two diff templates, or have 1 template
-  # and do the differences in configs in the template
-  #file { '/etc/rsyslog.d/10-tlog-forward-relp-tls.conf':
-  #  ensure  => $ensure_parm,
-  #  content => epp( "${module_name}/10-tlog-forward-relp-tls.conf.epp" ),
-  #  owner   => 'root',
-  #  group   => 'root',
-  #  mode    => '0644',
-  #  notify  => Service['rsyslog'],
-  #}
-
-  # TODO make this a single template
-  #file { '/etc/rsyslog.d/10-tlog-forward-tcp-tls.conf':
-  #  ensure  => $ensure_parm,
-  #  content => epp( "${module_name}/10-tlog-forward-tcp-tls.conf.epp" ),
-  #  owner   => 'root',
-  #  group   => 'root',
-  #  mode    => '0644',
-  #  notify  => Service['rsyslog'],
-  #}
+  file { '/etc/rsyslog.d/10-tlog-forward.conf':
+    ensure  => $ensure_parm,
+    content => epp( "${module_name}/10-tlog-forward.conf.epp" ),
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    notify  => Service['rsyslog'],
+  }
 
 }
