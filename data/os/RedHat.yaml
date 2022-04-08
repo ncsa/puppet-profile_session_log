@@ -1,7 +1,3 @@
 ---
-# Use this for non 8.4 which does not have acccess to required packages
 profile_session_log::install::required_pkgs:
   - "tlog"
-# TODO remove required packages for rsyslog
-#profile_session_log::rsyslog::required_pkgs:
-#  - "rsyslog-openssl"
