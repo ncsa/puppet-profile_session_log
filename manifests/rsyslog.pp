@@ -19,7 +19,7 @@ class profile_session_log::rsyslog (
   String        $forward_protocol,
   String        $remote_syslog_server,
   Integer       $remote_syslog_server_port,
-  Array[String] $required_pkgs,
+  #Array[String] $required_pkgs,  #TODO remove this
 ) {
 
   $enabled = lookup("${module_name}::enable_session_log", Boolean)
