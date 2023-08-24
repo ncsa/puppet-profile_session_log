@@ -1,0 +1,46 @@
+<%- | $forward_protocol,
+      $remote_syslog_server,
+      $remote_syslog_server_port,
+| -%>
+# This file is managed by Puppet. Manual changes will be lost
+
+<%- if $forward_protocol == 'tcp-tls' { -%>
+global(
+DefaultNetstreamDriver="gtls"
+DefaultNetstreamDriverCAFile="/etc/ssl/certs/ca-bundle.crt"
+)
+<%- } -%>
+
+ruleset (name="terminal_session_log") {
+
+  # Forward local3 tlog to remote collector
+  if $syslogfacility-text == 'local3' then {
+  <%- if $forward_protocol == 'relp-tls' { -%>
+    action(Name="tlog"
+      type="omrelp"
+      target="<%= $remote_syslog_server %>" port="<%= $remote_syslog_server_port %>" tls="on"
+      tls.cacert="/etc/ssl/certs/ca-bundle.crt"
+      tls.authmode="name"
+      tls.permittedpeer="<%= $remote_syslog_server %>"
+      tls.tlscfgcmd="MinProtocol=TLSv1.2"
+  <%- } else { -%>
+    action(type="omfwd"
+      target="<%= $remote_syslog_server %>" port="<%= $remote_syslog_server_port %>" protocol="tcp"
+      StreamDriver="gtls"
+      StreamDriverMode="1"
+      StreamDriverAuthMode="x509/name"
+      StreamDriverPermittedPeers="<%= $remote_syslog_server %>"
+      gnutlsPriorityString="SECURE128:+SECURE256:-VERS-ALL:+VERS-TLS1.3:+VERS-TLS1.2"
+  <%- } -%>
+      queue.filename="tlog-buffer"
+      queue.saveonshutdown="on"
+      queue.type="LinkedList"
+      queue.size="300000"
+      queue.maxdiskspace="1073741824"
+      queue.syncqueuefiles="on"
+      queue.checkpointinterval="100"
+      action.resumeinterval="30"
+    )
+    stop
+  }
+}

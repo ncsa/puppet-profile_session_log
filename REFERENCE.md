@@ -30,13 +30,20 @@ include profile_session_log
 
 The following parameters are available in the `profile_session_log` class:
 
-* [`enable_session_log`](#enable_session_log)
+* [`enable`](#enable)
+* [`required_pkgs`](#required_pkgs)
 
-##### <a name="enable_session_log"></a>`enable_session_log`
+##### <a name="enable"></a>`enable`
 
 Data type: `Boolean`
 
 Enables or disabled the logging of sessions
+
+##### <a name="required_pkgs"></a>`required_pkgs`
+
+Data type: `Array[String]`
+
+Base packages required for tlog to work
 
 ### <a name="profile_session_loginstall"></a>`profile_session_log::install`
 
@@ -49,18 +56,6 @@ Install the base packages needed for tlog to function
 ```puppet
 include profile_session_log::install
 ```
-
-#### Parameters
-
-The following parameters are available in the `profile_session_log::install` class:
-
-* [`required_pkgs`](#required_pkgs)
-
-##### <a name="required_pkgs"></a>`required_pkgs`
-
-Data type: `Array[ String ]`
-
-Base packages required for tlog to work
 
 ### <a name="profile_session_logrsyslog"></a>`profile_session_log::rsyslog`
 
@@ -78,9 +73,15 @@ include profile_session_log::rsyslog
 
 The following parameters are available in the `profile_session_log::rsyslog` class:
 
+* [`forward_protocol`](#forward_protocol)
 * [`remote_syslog_server`](#remote_syslog_server)
 * [`remote_syslog_server_port`](#remote_syslog_server_port)
-* [`required_pkgs`](#required_pkgs)
+
+##### <a name="forward_protocol"></a>`forward_protocol`
+
+Data type: `String`
+
+Protocol to use to forward tlog messages to rsyslog server. Valid options are 'relp-tls' and 'tcp-tls'
 
 ##### <a name="remote_syslog_server"></a>`remote_syslog_server`
 
@@ -93,12 +94,6 @@ Hostname of the remote syslog server to forward to
 Data type: `Integer`
 
 Port number of the remote syslog server to forward to
-
-##### <a name="required_pkgs"></a>`required_pkgs`
-
-Data type: `Array[String]`
-
-List of packages required to forward tlog data over rsyslog
 
 ### <a name="profile_session_logsssd"></a>`profile_session_log::sssd`
 
@@ -116,20 +111,28 @@ include profile_session_log::sssd
 
 The following parameters are available in the `profile_session_log::sssd` class:
 
-* [`users`](#users)
+* [`exclude_users`](#exclude_users)
 * [`groups`](#groups)
+* [`users`](#users)
 
-##### <a name="users"></a>`users`
+##### <a name="exclude_users"></a>`exclude_users`
 
 Data type: `Array[String]`
 
-Array of users who will be session logged
+Array of users to exclude from session logging (root is automatically excluded)
+This param only takes effect if both profile_session_log::sssd::users and profile_session_log::sssd::groups is empty
 
 ##### <a name="groups"></a>`groups`
 
 Data type: `Array[String]`
 
 Array of groups who will be session logged
+
+##### <a name="users"></a>`users`
+
+Data type: `Array[String]`
+
+Array of users who will be session logged
 
 ### <a name="profile_session_logtlog"></a>`profile_session_log::tlog`
 
@@ -142,4 +145,16 @@ Setup and configure tlog
 ```puppet
 include profile_session_log::tlog
 ```
+
+#### Parameters
+
+The following parameters are available in the `profile_session_log::tlog` class:
+
+* [`message`](#message)
+
+##### <a name="message"></a>`message`
+
+Data type: `String`
+
+Message to display when tlog starts recording session
 
