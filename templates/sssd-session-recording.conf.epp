@@ -1,12 +1,16 @@
-<%- | $users,
+<%- | $exclude_users,
       $groups,
+      $users,
 | -%>
 # This file is managed by Puppet. Manual changes will be lost
 [session_recording]
 <% if ($users.empty) and ($groups.empty) { -%>
 scope=all
+    <%- if ! $exclude_users.empty { -%>
+exclude_users=<%= $exclude_users %>
+    <%- } -%>
 <% } else { -%>
 scope=some
+users=<%= $users %>
+groups=<%= $groups %>
 <% } -%>
-users= <%= $users %>
-groups= <%= $groups %>

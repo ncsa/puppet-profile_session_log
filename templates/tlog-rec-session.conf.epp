@@ -1,7 +1,9 @@
-// This file is managed by Puppet. Manual changes will be lost
+<%- | $message,
+| -%>
+// This file is managed by puppet
 {
     "shell": "/bin/bash",
-    "notice": "\nATTENTION! Your session is being recorded!\n\n",
+    "notice": "<%= $message %>",
     "latency": 10,
     "payload": 2048,
     "log": {

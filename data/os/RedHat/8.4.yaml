@@ -1,5 +1,0 @@
----
-# Redhat 8.4 requires using tcp-tls as forward protocol
-# since it doesn't have have the rsyslog-openssl package avail.
-profile_session_log::rsyslog::forward_protocol: "tcp-tls"
-profile_session_log::rsyslog::remote_syslog_server_port: 6514

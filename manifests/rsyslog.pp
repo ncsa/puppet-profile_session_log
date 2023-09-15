@@ -12,40 +12,38 @@
 # @example
 #   include profile_session_log::rsyslog
 class profile_session_log::rsyslog (
-  String        $forward_protocol,
-  String        $remote_syslog_server,
-  Integer       $remote_syslog_server_port,
+  String  $forward_protocol,
+  String  $remote_syslog_server,
+  Integer $remote_syslog_server_port,
 ) {
-
-  $enabled = lookup("${module_name}::enable_session_log", Boolean)
-
-  if ($enabled) {
+  if ($profile_session_log::enable) {
     $ensure_parm = 'present'
 
-    $packages_defaults = {
-    }
-
     if ($forward_protocol == 'relp-tls') {
-      $required_pkgs = [ 'rsyslog-openssl' ]
+      $required_pkgs = ['rsyslog-openssl']
     } elsif ($forward_protocol == 'tcp-tls') {
-      $required_pkgs = [ 'rsyslog-gnutls' ]
+      $required_pkgs = ['rsyslog-gnutls']
     } else {
       fail("Invalid option given for forward_protocol: ${forward_protocol}")
     }
 
-    ensure_packages( $required_pkgs, $packages_defaults )
-
+    ensure_packages( $required_pkgs )
   } else {
     $ensure_parm = 'absent'
   }
 
-  file { '/etc/rsyslog.d/10-tlog-forward.conf':
+  $tlog_forward_cfg_hash = {
+    'forward_protocol'          => $forward_protocol,
+    'remote_syslog_server'      => $remote_syslog_server,
+    'remote_syslog_server_port' => $remote_syslog_server_port,
+  }
+
+  file { '/etc/rsyslog.d/tlog-forward.conf':
     ensure  => $ensure_parm,
-    content => epp( "${module_name}/10-tlog-forward.conf.epp" ),
+    content => epp( "${module_name}/tlog-forward.conf.epp", $tlog_forward_cfg_hash ),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
     notify  => Service['rsyslog'],
   }
-
 }
