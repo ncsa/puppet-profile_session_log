@@ -1,0 +1,5 @@
+---
+# NO WAY KNOWN CURRENTLY TO INSTALL tlog PACKAGE IN SUSE
+# tlog WOULD NEED TO BE BUILT FROM SOURCE FOR USE WITH SUSE
+#   https://github.com/Scribery/tlog?tab=readme-ov-file#building
+profile_session_log::required_pkgs: []
