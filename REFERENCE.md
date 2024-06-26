@@ -7,10 +7,10 @@
 ### Classes
 
 * [`profile_session_log`](#profile_session_log): Install and configure tlog
-* [`profile_session_log::install`](#profile_session_loginstall): Install the base packages needed for tlog to function
-* [`profile_session_log::rsyslog`](#profile_session_logrsyslog): Setup rsyslog to forward tlog data to remote syslog server
-* [`profile_session_log::sssd`](#profile_session_logsssd): Configure sssd component of tlog
-* [`profile_session_log::tlog`](#profile_session_logtlog): Setup and configure tlog
+* [`profile_session_log::install`](#profile_session_log--install): Install the base packages needed for tlog to function
+* [`profile_session_log::rsyslog`](#profile_session_log--rsyslog): Setup rsyslog to forward tlog data to remote syslog server
+* [`profile_session_log::sssd`](#profile_session_log--sssd): Configure sssd component of tlog
+* [`profile_session_log::tlog`](#profile_session_log--tlog): Setup and configure tlog
 
 ## Classes
 
@@ -30,22 +30,22 @@ include profile_session_log
 
 The following parameters are available in the `profile_session_log` class:
 
-* [`enable`](#enable)
-* [`required_pkgs`](#required_pkgs)
+* [`enable`](#-profile_session_log--enable)
+* [`required_pkgs`](#-profile_session_log--required_pkgs)
 
-##### <a name="enable"></a>`enable`
+##### <a name="-profile_session_log--enable"></a>`enable`
 
 Data type: `Boolean`
 
 Enables or disabled the logging of sessions
 
-##### <a name="required_pkgs"></a>`required_pkgs`
+##### <a name="-profile_session_log--required_pkgs"></a>`required_pkgs`
 
 Data type: `Array[String]`
 
 Base packages required for tlog to work
 
-### <a name="profile_session_loginstall"></a>`profile_session_log::install`
+### <a name="profile_session_log--install"></a>`profile_session_log::install`
 
 Install the base packages needed for tlog to function
 
@@ -57,7 +57,7 @@ Install the base packages needed for tlog to function
 include profile_session_log::install
 ```
 
-### <a name="profile_session_logrsyslog"></a>`profile_session_log::rsyslog`
+### <a name="profile_session_log--rsyslog"></a>`profile_session_log::rsyslog`
 
 Setup rsyslog to forward tlog data to remote syslog server
 
@@ -73,29 +73,29 @@ include profile_session_log::rsyslog
 
 The following parameters are available in the `profile_session_log::rsyslog` class:
 
-* [`forward_protocol`](#forward_protocol)
-* [`remote_syslog_server`](#remote_syslog_server)
-* [`remote_syslog_server_port`](#remote_syslog_server_port)
+* [`forward_protocol`](#-profile_session_log--rsyslog--forward_protocol)
+* [`remote_syslog_server`](#-profile_session_log--rsyslog--remote_syslog_server)
+* [`remote_syslog_server_port`](#-profile_session_log--rsyslog--remote_syslog_server_port)
 
-##### <a name="forward_protocol"></a>`forward_protocol`
+##### <a name="-profile_session_log--rsyslog--forward_protocol"></a>`forward_protocol`
 
 Data type: `String`
 
 Protocol to use to forward tlog messages to rsyslog server. Valid options are 'relp-tls' and 'tcp-tls'
 
-##### <a name="remote_syslog_server"></a>`remote_syslog_server`
+##### <a name="-profile_session_log--rsyslog--remote_syslog_server"></a>`remote_syslog_server`
 
 Data type: `String`
 
 Hostname of the remote syslog server to forward to
 
-##### <a name="remote_syslog_server_port"></a>`remote_syslog_server_port`
+##### <a name="-profile_session_log--rsyslog--remote_syslog_server_port"></a>`remote_syslog_server_port`
 
 Data type: `Integer`
 
 Port number of the remote syslog server to forward to
 
-### <a name="profile_session_logsssd"></a>`profile_session_log::sssd`
+### <a name="profile_session_log--sssd"></a>`profile_session_log::sssd`
 
 Configure sssd component of tlog
 
@@ -111,30 +111,30 @@ include profile_session_log::sssd
 
 The following parameters are available in the `profile_session_log::sssd` class:
 
-* [`exclude_users`](#exclude_users)
-* [`groups`](#groups)
-* [`users`](#users)
+* [`exclude_users`](#-profile_session_log--sssd--exclude_users)
+* [`groups`](#-profile_session_log--sssd--groups)
+* [`users`](#-profile_session_log--sssd--users)
 
-##### <a name="exclude_users"></a>`exclude_users`
+##### <a name="-profile_session_log--sssd--exclude_users"></a>`exclude_users`
 
 Data type: `Array[String]`
 
 Array of users to exclude from session logging (root is automatically excluded)
 This param only takes effect if both profile_session_log::sssd::users and profile_session_log::sssd::groups is empty
 
-##### <a name="groups"></a>`groups`
+##### <a name="-profile_session_log--sssd--groups"></a>`groups`
 
 Data type: `Array[String]`
 
 Array of groups who will be session logged
 
-##### <a name="users"></a>`users`
+##### <a name="-profile_session_log--sssd--users"></a>`users`
 
 Data type: `Array[String]`
 
 Array of users who will be session logged
 
-### <a name="profile_session_logtlog"></a>`profile_session_log::tlog`
+### <a name="profile_session_log--tlog"></a>`profile_session_log::tlog`
 
 Setup and configure tlog
 
@@ -150,9 +150,9 @@ include profile_session_log::tlog
 
 The following parameters are available in the `profile_session_log::tlog` class:
 
-* [`message`](#message)
+* [`message`](#-profile_session_log--tlog--message)
 
-##### <a name="message"></a>`message`
+##### <a name="-profile_session_log--tlog--message"></a>`message`
 
 Data type: `String`
 
